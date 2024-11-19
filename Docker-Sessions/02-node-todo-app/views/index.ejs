@@ -1,0 +1,33 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+
+<body style="display:grid; justify-content: center; font-size:30px;">
+    <h1>Todo List</h1>
+
+    <!-- Form to add new todo -->
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Enter a new task" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        <% todos.forEach(function(todo) { %>
+            <li>
+                <%= todo.task %>
+                    <a href="/done/<%= todo.id %>">
+                        <%= todo.done ? 'Undo' : 'Done' %>
+                    </a>
+                    <a href="/delete/<%= todo.id %>">Delete</a>
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
